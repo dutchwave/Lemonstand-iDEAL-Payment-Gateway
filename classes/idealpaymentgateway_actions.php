@@ -5,7 +5,7 @@
 		}
 		public function on_transaction() {
 			if (!($order = Shop_Order::create()->find(post('order_id'))))
-				throw new Phpr_ApplicationException('Fout: Kan uw bestelling te vinden. Gelieve te verversen en probeer het later opnieuw.');
+				throw new Phpr_ApplicationException('Fout: Kan uw bestelling niet vinden. Gelieve de pagina verversen of probeer het later opnieuw.');
 			
 			if (!($issuer_id = post('IdealPaymentGateway_issuerID')))
 				throw new Phpr_ApplicationException('Fout: Kies uw bank');
@@ -41,6 +41,7 @@
 					'expirationPeriod' => 'PT30M30S',
 					'language' => 'nl',
 					// Description contains no spaces to prevent discrepancies between gateways
+					// Dutch version: 'description' => '' . preg_replace('/\s+/', '_', Shop_CompanyInformation::get()->name) . '_Bestelling_' . $order->id,
 					'description' => 'Order_from_' . preg_replace('/\s+/', '_', Shop_CompanyInformation::get()->name) . '_' . $order->id,
 					'entranceCode' => $entrance_code
 				)

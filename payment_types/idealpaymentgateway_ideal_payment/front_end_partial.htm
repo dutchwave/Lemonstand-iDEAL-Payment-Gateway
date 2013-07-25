@@ -1,5 +1,5 @@
 <p class="top_offset">
-  Please select the bank you wish to pay with.
+  Selecteer de bank waarmee u wilt betalen:
 </p>  
 <?= open_form() ?>
   <?= IdealPaymentGateway_Helper::render_select($payment_method) ?>
@@ -9,5 +9,5 @@
   ?>
     <input type="hidden" name="<?= $name ?>" value="<?= h($value) ?>"/>
   <? endforeach ?>
-  <input type="submit" value="Pay with iDEAL" onclick="return $(this).getForm().sendRequest('idealpaymentgateway:on_transaction')"/>
+  <input type="submit" value="Betaal met iDEAL" onclick="return $(this).getForm().sendRequest('idealpaymentgateway:on_transaction')"/>
 <?= close_form() ?>
